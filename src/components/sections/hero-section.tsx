@@ -16,8 +16,6 @@ import { HeroImage } from "@/components/sections/hero-image";
 
 import { DateCard } from "@/components/sections/date-card";
 
-import { FinanceCard } from "@/components/sections/finance-card";
-
 import {
 
   MotionWrapper,
@@ -268,21 +266,9 @@ export function HeroSection() {
 
 
 
-          <div className="order-1 lg:order-2 flex flex-col gap-4">
+          <div className="order-1 lg:order-2">
 
             <HeroImage />
-
-            
-
-            <div className="lg:hidden">
-
-              <DateCard />
-
-            </div>
-
-
-
-            <FinanceCard />
 
           </div>
 
