@@ -1,0 +1,10 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MM Logo">
+  <rect width="48" height="48" rx="12" fill="url(#logo-gradient)"/>
+  <text x="24" y="31" text-anchor="middle" fill="white" font-size="18" font-weight="700" font-family="system-ui, sans-serif" letter-spacing="-1">MM</text>
+  <defs>
+    <linearGradient id="logo-gradient" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1565C0"/>
+      <stop offset="1" stop-color="#0D47A1"/>
+    </linearGradient>
+  </defs>
+</svg>
