@@ -4,7 +4,7 @@ export const siteConfig = {
   title: "SMMM Necdet Bozkurt | Serbest Muhasebeci Mali Müşavir",
   description:
     "Necdet Bozkurt — Serbest Muhasebeci Mali Müşavir. Muhasebe, vergi danışmanlığı, şirket kuruluşu, SGK işlemleri, bordrolama ve finansal danışmanlık hizmetleri.",
-  url: "https://necdetbozkurt.com",
+  url: "https://necdetbozkurt.com.tr",
   ogImage: "/opengraph-image",
   locale: "tr_TR",
   language: "tr",
