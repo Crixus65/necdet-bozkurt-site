@@ -59,7 +59,7 @@ export function GoogleMap({ className }: GoogleMapProps) {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold text-foreground">Ofisimiz</h3>
-                    <p className="mt-1 text-base font-semibold text-primary">Necdet Bozkurt</p>
+                    <p className="mt-1 text-base font-semibold text-primary">Necdet BOZKURT</p>
                     <p className="mt-0.5 text-sm text-muted">Serbest Muhasebeci Mali Müşavir</p>
                   </div>
                 </div>

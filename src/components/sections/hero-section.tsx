@@ -136,7 +136,7 @@ export function HeroSection() {
 
                 <span className="block text-primary">SERBEST MUHASEBECİ</span>
 
-                <span className="block text-foreground">MALİ MÜŞAVİR</span>
+                <span className="block text-primary">MALİ MÜŞAVİR</span>
 
               </h1>
 
@@ -148,7 +148,7 @@ export function HeroSection() {
 
               <p className="mt-4 text-3xl font-semibold tracking-tight text-foreground sm:text-[2.5rem] md:text-4xl">
 
-                Necdet Bozkurt
+                Necdet BOZKURT
 
               </p>
 

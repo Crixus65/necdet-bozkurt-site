@@ -43,7 +43,7 @@ export function ContactSection({ showHeading = true }: ContactSectionProps) {
                 id="contact-heading"
                 className="mt-2 text-2xl font-bold text-foreground"
               >
-                Necdet Bozkurt
+                Necdet BOZKURT
               </h3>
 
               <ul className="mt-8 space-y-5" aria-label="İletişim bilgileri">

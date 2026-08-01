@@ -14,7 +14,7 @@ function HeroPlaceholder() {
         <User className="size-12" strokeWidth={1.5} />
       </div>
       <div className="text-center">
-        <p className="text-lg font-semibold text-foreground">Necdet Bozkurt</p>
+        <p className="text-lg font-semibold text-foreground">Necdet BOZKURT</p>
         <p className="mt-1 text-sm text-muted">Serbest Muhasebeci Mali Müşavir</p>
       </div>
     </div>
@@ -62,7 +62,7 @@ export function HeroImage() {
             ) : (
               <Image
                 src="/necdet 2.jpg"
-                alt="Serbest Muhasebeci Mali Müşavir Necdet Bozkurt"
+                alt="Serbest Muhasebeci Mali Müşavir Necdet BOZKURT"
                 fill
                 priority
                 quality={100}
@@ -79,7 +79,7 @@ export function HeroImage() {
                 <span className="text-sm font-bold text-primary">NB</span>
               </div>
               <div>
-                <p className="text-sm font-semibold text-foreground">Necdet Bozkurt</p>
+                <p className="text-sm font-semibold text-foreground">Necdet BOZKURT</p>
                 <p className="text-xs text-muted">Serbest Muhasebeci Mali Müşavir</p>
               </div>
             </div>
