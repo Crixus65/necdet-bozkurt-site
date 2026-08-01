@@ -8,11 +8,16 @@ import { MotionWrapper } from "@/components/animations/motion-wrapper";
 interface FinanceData {
   usdTry: number;
   eurTry: number;
-  gold: number;
-  silver: number;
+  goldTry: number;
+  silverTry: number;
   bitcoin: number;
   ethereum: number;
   lastUpdate: string;
+}
+
+interface MetalPrice {
+  symbol: string;
+  price: number;
 }
 
 export function FinanceCard() {
@@ -26,15 +31,15 @@ export function FinanceCard() {
         setIsLoading(true);
         setError(false);
 
-        // Döviz kurları
+        // Döviz kurları (ECB - güvenilir ücretsiz API)
         const forexResponse = await fetch(
-          "https://api.exchangerate-api.com/v4/latest/USD"
+          "https://open.er-api.com/v6/latest/USD"
         );
         const forexData = await forexResponse.json();
         const usdTry = forexData.rates.TRY;
         const eurTry = forexData.rates.EUR / forexData.rates.TRY;
 
-        // Kripto paralar
+        // Kripto paralar (CoinGecko - ücretsiz)
         const cryptoResponse = await fetch(
           "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=try"
         );
@@ -42,15 +47,35 @@ export function FinanceCard() {
         const bitcoin = cryptoData.bitcoin?.try || 0;
         const ethereum = cryptoData.ethereum?.try || 0;
 
-        // Altın ve gümüş (simüle edilmiş değerler - gerçek API yok)
-        const gold = usdTry * 75; // 1 ons altın ~75 USD
-        const silver = usdTry * 0.9; // 1 ons gümüş ~0.9 USD
+        // Altın ve Gümüş (metals.live - ücretsiz API)
+        let goldTry = 0;
+        let silverTry = 0;
+        
+        try {
+          const metalsResponse = await fetch(
+            "https://api.metals.live/v1/spot/gold,silver"
+          );
+          const metalsData = await metalsResponse.json();
+          
+          // metals.live API'si fiyatları USD olarak döndürür
+          const goldUsd = metalsData.find((item: MetalPrice) => item.symbol === "XAU")?.price || 0;
+          const silverUsd = metalsData.find((item: MetalPrice) => item.symbol === "XAG")?.price || 0;
+          
+          // USD'den TRY'ye çevir (1 ons = 31.1035 gram)
+          goldTry = (goldUsd * usdTry) / 31.1035; // Gram altın
+          silverTry = (silverUsd * usdTry) / 31.1035; // Gram gümüş
+        } catch (metalError) {
+          console.error("Metals API hatası:", metalError);
+          // API başarısız olursa dövizden hesapla (yaklaşık değerler)
+          goldTry = (usdTry * 75) / 31.1035; // 1 ons altın ~75 USD
+          silverTry = (usdTry * 0.9) / 31.1035; // 1 ons gümüş ~0.9 USD
+        }
 
         setData({
           usdTry,
           eurTry,
-          gold,
-          silver,
+          goldTry,
+          silverTry,
           bitcoin,
           ethereum,
           lastUpdate: new Date().toLocaleString("tr-TR", {
@@ -103,14 +128,21 @@ export function FinanceCard() {
   }
 
   if (error || !data) {
-    return null;
+    return (
+      <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+        <div className="flex items-center gap-3 text-muted">
+          <TrendingUp className="size-5" aria-hidden="true" />
+          <p className="text-sm">Finans verileri şu anda yüklenemiyor.</p>
+        </div>
+      </div>
+    );
   }
 
   const items = [
     { label: "USD/TRY", value: formatCurrency(data.usdTry), icon: "💵" },
     { label: "EUR/TRY", value: formatCurrency(data.eurTry), icon: "💶" },
-    { label: "Gram Altın", value: `${formatCurrency(data.gold)} TL`, icon: "🥇" },
-    { label: "Gümüş", value: `${formatCurrency(data.silver)} TL`, icon: "🥈" },
+    { label: "Gram Altın", value: `${formatCurrency(data.goldTry)} TL`, icon: "🥇" },
+    { label: "Gümüş", value: `${formatCurrency(data.silverTry)} TL`, icon: "🥈" },
     { label: "Bitcoin", value: `${formatCrypto(data.bitcoin)} TL`, icon: "₿" },
     { label: "Ethereum", value: `${formatCrypto(data.ethereum)} TL`, icon: "Ξ" },
   ];

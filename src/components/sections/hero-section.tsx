@@ -268,9 +268,19 @@ export function HeroSection() {
 
 
 
-          <div className="order-1 lg:order-2 space-y-4">
+          <div className="order-1 lg:order-2 flex flex-col gap-4">
 
             <HeroImage />
+
+            
+
+            <div className="lg:hidden">
+
+              <DateCard />
+
+            </div>
+
+
 
             <FinanceCard />
 
