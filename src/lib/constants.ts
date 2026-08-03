@@ -22,7 +22,6 @@ import {
 export const NAV_ITEMS = [
   { label: "Ana Sayfa", href: "/" },
   { label: "Hizmetler", href: "/hizmetler" },
-  { label: "Mevzuat", href: "/mevzuat" },
   { label: "Faydalı Linkler", href: "/faydali-linkler" },
   { label: "Duyurular", href: "/duyurular" },
   { label: "İletişim", href: "/iletisim" },

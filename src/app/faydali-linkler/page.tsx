@@ -1,8 +1,9 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { MotionWrapper, StaggerContainer, StaggerItem } from "@/components/animations/motion-wrapper";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, BookOpen } from "lucide-react";
 import { metadata as rootMetadata } from "@/lib/metadata";
 
 const faydaliLinkler = [
@@ -112,6 +113,35 @@ export default function FaydaliLinklerPage() {
             </StaggerItem>
           ))}
         </StaggerContainer>
+
+        {/* Mevzuat Bölümü */}
+        <MotionWrapper variant="fade-up" delay={0.3}>
+          <div className="mt-20">
+            <h2 className="text-3xl font-bold text-foreground mb-8">Mevzuat</h2>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-primary/25 hover:shadow-card">
+                <div className="mb-4 flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-white">
+                  <BookOpen className="size-6" aria-hidden="true" />
+                </div>
+                <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
+                  Mevzuat Bilgi Sistemi
+                </h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">
+                  Türkiye deki güncel kanun, yönetmelik, tebliğ ve resmî mevzuat içeriklerine erişebilirsiniz.
+                </p>
+                <div className="mt-4">
+                  <Link
+                    href="/mevzuat"
+                    className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:shadow-md"
+                  >
+                    <span>Mevzuata Git</span>
+                    <ExternalLink className="size-4" aria-hidden="true" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </MotionWrapper>
       </Container>
     </div>
   );
