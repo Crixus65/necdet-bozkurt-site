@@ -39,6 +39,7 @@ export function HeroImage() {
             ease: "easeInOut",
           }}
           aria-hidden="true"
+          style={{ willChange: "opacity, transform" }}
         />
 
         <div

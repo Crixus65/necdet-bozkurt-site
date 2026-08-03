@@ -57,6 +57,7 @@ export function HeroSection() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
+          style={{ willChange: "opacity, transform" }}
         />
         {}
         <motion.div
@@ -71,6 +72,7 @@ export function HeroSection() {
             ease: "easeInOut",
             delay: 1,
           }}
+          style={{ willChange: "opacity, transform" }}
         />
         {}
         <motion.div
@@ -85,6 +87,7 @@ export function HeroSection() {
             ease: "easeInOut",
             delay: 2,
           }}
+          style={{ willChange: "opacity, transform" }}
         />
         {}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--color-primary)_0%,_transparent_50%)] opacity-[0.06]" />

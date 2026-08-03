@@ -7,6 +7,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { MotionWrapper } from "@/components/animations/motion-wrapper";
 import { STATS_ITEMS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 function AnimatedNumber({
   value,
@@ -52,6 +53,8 @@ function AnimatedNumber({
 }
 
 export function StatsSection() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <section
       className="section-spacing relative overflow-hidden border-y border-border bg-primary"
@@ -76,18 +79,23 @@ export function StatsSection() {
           {STATS_ITEMS.map((stat, index) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={prefersReducedMotion ? undefined : { opacity: 0, y: 24 }}
+              whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{
-                delay: index * 0.1,
-                duration: 0.5,
-                ease: [0.22, 1, 0.36, 1],
-              }}
+              transition={
+                prefersReducedMotion
+                  ? { duration: 0 }
+                  : {
+                      delay: index * 0.1,
+                      duration: 0.5,
+                      ease: [0.22, 1, 0.36, 1],
+                    }
+              }
               className={cn(
                 "rounded-2xl border border-white/15 bg-white/10 p-6 text-center backdrop-blur-sm",
                 "transition-all duration-300 hover:-translate-y-1 hover:bg-white/15 hover:shadow-lg",
               )}
+              style={prefersReducedMotion ? {} : { willChange: "transform, opacity" }}
             >
               <p
                 id={index === 0 ? "stats-heading" : undefined}

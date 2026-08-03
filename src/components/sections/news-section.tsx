@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { NEWS_SOURCES } from "@/lib/news/providers";
 import type { NewsFetchResult, NewsItem } from "@/lib/news/types";
 import { cn } from "@/lib/utils";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 function NewsCard({ news }: { news: NewsItem }) {
   const sourceInfo = NEWS_SOURCES[news.source];
@@ -106,6 +107,7 @@ export function NewsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -253,12 +255,13 @@ export function NewsSection() {
                       <motion.div
                         key={currentIndex}
                         custom={direction}
-                        variants={slideVariants}
+                        variants={prefersReducedMotion ? { enter: { opacity: 0 }, center: { opacity: 1 }, exit: { opacity: 0 } } : slideVariants}
                         initial="enter"
                         animate="center"
                         exit="exit"
-                        transition={slideTransition}
+                        transition={prefersReducedMotion ? { duration: 0 } : slideTransition}
                         className="h-[500px]"
+                        style={prefersReducedMotion ? {} : { willChange: "transform, opacity" }}
                       >
                         <NewsCard news={currentNews} />
                       </motion.div>

@@ -2,6 +2,7 @@
 
 import { motion, type Variants } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 const fadeUpVariants: Variants = {
   hidden: { opacity: 0, y: 32 },
@@ -65,6 +66,12 @@ export function MotionWrapper({
   once = true,
   amount = 0.2,
 }: MotionWrapperProps) {
+  const prefersReducedMotion = useReducedMotion();
+
+  if (prefersReducedMotion) {
+    return <div className={cn(className)}>{children}</div>;
+  }
+
   return (
     <motion.div
       initial="hidden"
@@ -90,6 +97,12 @@ export function StaggerContainer({
   className,
   staggerDelay = 0.08,
 }: StaggerContainerProps) {
+  const prefersReducedMotion = useReducedMotion();
+
+  if (prefersReducedMotion) {
+    return <div className={cn(className)}>{children}</div>;
+  }
+
   return (
     <motion.div
       initial="hidden"
@@ -133,6 +146,12 @@ export function HoverScale({
   className?: string;
   scale?: number;
 }) {
+  const prefersReducedMotion = useReducedMotion();
+
+  if (prefersReducedMotion) {
+    return <div className={cn(className)}>{children}</div>;
+  }
+
   return (
     <motion.div
       whileHover={{ scale }}
